@@ -3,101 +3,450 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chini Bazar</title>
+    <title>Chini Bazar | Your Ultimate Variety Store</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* Modern Reset & Typography */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background-color: #f9f9f9; }
-
-        /* Navigation Bar */
-        header { background: #fff; padding: 20px 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 24px; font-weight: bold; text-decoration: none; color: #2ecc71; }
-        .logo span { color: #e74c3c; } /* Accent color for the logo text */
-        nav a { margin: 0 15px; text-decoration: none; color: #555; font-weight: 500; transition: color 0.3s; }
-        nav a:hover { color: #2ecc71; }
-
-        /* Hero Showcase Section */
-        .hero { background: linear-gradient(135deg, #f5fafd 0%, #e8f5e9 100%); padding: 80px 20px; text-align: center; }
-        .hero h1 { font-size: 42px; margin-bottom: 15px; color: #2c3e50; }
-        .hero p { font-size: 18px; margin-bottom: 25px; color: #7f8c8d; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .btn { display: inline-block; padding: 12px 30px; background-color: #2ecc71; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; transition: transform 0.2s, background-color 0.2s; }
-        .btn:hover { background-color: #27ae60; transform: translateY(-2px); }
-
-        /* Product / Gallery Section */
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        .section-title { text-align: center; font-size: 28px; margin-bottom: 30px; color: #2c3e50; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        
-        /* Card Styles */
-        .card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s; }
-        .card:hover { transform: translateY(-5px); }
-        .card-image { height: 300px; background-color: #eee; display: flex; align-items: center; justify-content: center; color: #aaa; font-style: italic; }
-        .card-info { padding: 20px; }
-        .card-title { font-size: 18px; margin-bottom: 10px; color: #2c3e50; }
-        .card-price { color: #e74c3c; font-weight: bold; font-size: 16px; }
-
-        /* Footer */
-        footer { background: #2c3e50; color: white; text-align: center; padding: 30px; margin-top: 60px; font-size: 14px; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 min-h-screen text-slate-800 flex flex-col">
 
-    <!-- Header / Navigation -->
-    <header>
-        <a href="#" class="logo">Chini <span>Bazar</span></a>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Collection</a>
-            <a href="#">About Us</a>
-        </nav>
+    <!-- Navigation Bar -->
+    <header class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="bg-emerald-500 text-white p-2 rounded-xl group-hover:bg-emerald-600 transition">
+                    <i class="fa-solid fa-store text-lg"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight text-slate-900">
+                    chini<span class="text-emerald-500">bazar</span>
+                </span>
+            </a>
+
+            <!-- Nav Links (Desktop) -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+                <a href="#products" class="hover:text-emerald-500 transition">Products</a>
+                <a href="#how-it-works" class="hover:text-emerald-500 transition">How to Order</a>
+                <a href="#setup" class="hover:text-emerald-500 transition">Seller Setup</a>
+            </nav>
+
+            <!-- Support Action -->
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/8801700000000" target="_blank" id="header-support-btn" class="flex items-center gap-2 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span class="hidden sm:inline">Live Chat</span>
+                </a>
+            </div>
+        </div>
     </header>
 
-    <!-- Welcome Hero Section -->
-    <section class="hero">
-        <h1>Welcome to Our Brand New Website</h1>
-        <p>Discover our latest high-quality arrivals designed carefully with premium materials and custom styles.</p>
-        <a href="#" class="btn">Explore Collection</a>
+    <!-- Hero Banner -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-850 to-emerald-950 text-white py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.1),transparent_40%)]"></div>
+        <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            <div class="space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
+                    <i class="fa-solid fa-sparkles"></i> Direct-to-Home Delivery
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none text-white">
+                    Premium Imports, <br>
+                    <span class="text-emerald-400">Crazy Discounts.</span>
+                </h1>
+                <p class="text-slate-300 text-base sm:text-lg max-w-lg mx-auto lg:mx-0 leading-relaxed">
+                    Welcome to <strong>chini bazar</strong>! Discover trending Chinese tech accessories, smart lifestyle gadgets, and fashion. Fast delivery, easy WhatsApp checkout.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#products" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3.5 px-8 rounded-xl shadow-lg shadow-emerald-500/20 transition hover:-translate-y-0.5 active:translate-y-0">
+                        Browse Hot Deals
+                    </a>
+                    <a href="#how-it-works" class="bg-slate-800 hover:bg-slate-700 text-white font-bold py-3.5 px-8 rounded-xl transition border border-slate-700">
+                        How to Buy
+                    </a>
+                </div>
+            </div>
+
+            <!-- Visual Feature Grid -->
+            <div class="hidden lg:grid grid-cols-2 gap-4">
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:border-emerald-500/30 transition">
+                    <div class="text-emerald-400 text-2xl mb-3"><i class="fa-solid fa-truck-fast"></i></div>
+                    <h3 class="font-bold text-lg text-white">Fast Home Delivery</h3>
+                    <p class="text-slate-400 text-xs mt-1">Get your package right at your doorstep with secure cash-on-delivery tracking.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:border-emerald-500/30 transition mt-6">
+                    <div class="text-emerald-400 text-2xl mb-3"><i class="fa-solid fa-headset"></i></div>
+                    <h3 class="font-bold text-lg text-white">24/7 WhatsApp Chat</h3>
+                    <p class="text-slate-400 text-xs mt-1">Direct support without annoying chatbots. Message us directly on WhatsApp anytime.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Main Content Grid -->
-    <div class="container">
-        <h2 class="section-title">Featured Items</h2>
-        <div class="grid">
+    <!-- Catalog Section -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full" id="products">
+        
+        <!-- Section Header with Category Filters -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Featured Collections</h2>
+                <p class="text-slate-500 text-sm mt-1">Our handpicked products imported directly for premium quality.</p>
+            </div>
             
-            <!-- Item 1 -->
-            <div class="card">
-                <div class="card-image">Product Image Placeholder 1</div>
-                <div class="card-info">
-                    <h3 class="card-title">Classic Design Collection</h3>
-                    <p class="card-price">Premium Quality</p>
+            <!-- Dynamic Category Buttons -->
+            <div class="flex flex-wrap gap-2" id="category-filters">
+                <button onclick="filterCategory('all')" id="btn-all" class="category-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-emerald-500 text-white transition shadow-sm">
+                    All Products
+                </button>
+                <button onclick="filterCategory('tech')" id="btn-tech" class="category-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-600 hover:bg-slate-100 transition">
+                    Smart Tech
+                </button>
+                <button onclick="filterCategory('lifestyle')" id="btn-lifestyle" class="category-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-600 hover:bg-slate-100 transition">
+                    Lifestyle
+                </button>
+                <button onclick="filterCategory('fashion')" id="btn-fashion" class="category-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-600 hover:bg-slate-100 transition">
+                    Trendy Fashion
+                </button>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamic items loaded by JavaScript -->
+        </div>
+
+    </main>
+
+    <!-- Quick Checkout Modal -->
+    <div id="checkout-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden border border-slate-100 animate-in fade-in zoom-in-95 duration-200">
+            <!-- Modal Header -->
+            <div class="bg-slate-900 p-5 text-white flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-2xl text-emerald-400"></i>
+                    <div>
+                        <h3 class="font-bold text-base">Quick WhatsApp Order</h3>
+                        <p class="text-[10px] text-slate-400">Send details to instantly process delivery</p>
+                    </div>
                 </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white transition p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
             </div>
 
-            <!-- Item 2 -->
-            <div class="card">
-                <div class="card-image">Product Image Placeholder 2</div>
-                <div class="card-info">
-                    <h3 class="card-title">Modern Style Edition</h3>
-                    <p class="card-price">New Arrival</p>
+            <!-- Modal Body -->
+            <div class="p-6 space-y-4">
+                <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 flex gap-3">
+                    <img id="modal-product-img" src="" alt="" class="w-16 h-16 object-cover rounded-lg border border-slate-200 shrink-0">
+                    <div class="min-w-0">
+                        <h4 id="modal-product-name" class="font-bold text-sm text-slate-800 truncate">Product Name</h4>
+                        <p id="modal-product-price" class="text-emerald-600 font-extrabold text-base mt-1">৳ 0.00</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Item 3 -->
-            <div class="card">
-                <div class="card-image">Product Image Placeholder 3</div>
-                <div class="card-info">
-                    <h3 class="card-title">Special Release Item</h3>
-                    <p class="card-price">Trending</p>
-                </div>
-            </div>
+                <form id="order-form" onsubmit="submitOrder(event)" class="space-y-3.5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1">Your Name</label>
+                        <input type="text" id="cust-name" required placeholder="e.g., Ahsan Kabir" class="w-full px-3.5 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none text-sm transition">
+                    </div>
 
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1">Mobile Number</label>
+                        <input type="tel" id="cust-phone" required placeholder="e.g., 01712345678" class="w-full px-3.5 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none text-sm transition">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1">Full Delivery Address</label>
+                        <textarea id="cust-address" required rows="2" placeholder="House/Flat number, Road, Area, City" class="w-full px-3.5 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none text-sm transition resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-emerald-500/15 transition flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Send Order details
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 
+    <!-- How it Works & FAQ Section -->
+    <section class="bg-white border-t border-b border-slate-100 py-16 px-4" id="how-it-works">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-slate-900">How to Order?</h2>
+                <p class="text-slate-500 text-sm mt-1">Get your package delivered in just 3 easy steps!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="space-y-3">
+                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center font-bold text-lg mx-auto">1</div>
+                    <h3 class="font-bold text-slate-800 text-base">Select Your Item</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Browse our collection and find the exact smart tech or lifestyle product you want.</p>
+                </div>
+                <div class="space-y-3">
+                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center font-bold text-lg mx-auto">2</div>
+                    <h3 class="font-bold text-slate-800 text-base">Send Address</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Click "Order on WhatsApp", write your address, and hit send. No registration needed.</p>
+                </div>
+                <div class="space-y-3">
+                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center font-bold text-lg mx-auto">3</div>
+                    <h3 class="font-bold text-slate-800 text-base">Cash on Delivery</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Receive the package at home, inspect the quality, and pay the delivery rider.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seller Setup Config Panel -->
+    <section class="bg-slate-900 text-slate-100 py-12 px-4 border-t border-slate-800" id="setup">
+        <div class="max-w-xl mx-auto bg-slate-800 border border-slate-700/60 p-6 rounded-2xl text-center shadow-xl space-y-4">
+            <h3 class="text-lg font-bold text-emerald-400"><i class="fa-solid fa-sliders"></i> Chini Bazar Developer Setup</h3>
+            <p class="text-xs text-slate-300">
+                Type **your own mobile number** below! The system will automatically route all WhatsApp buttons on this live mockup to your phone so you can test it.
+            </p>
+            
+            <div class="flex gap-2 max-w-sm mx-auto">
+                <input type="text" id="seller-number" placeholder="8801700000000" class="flex-grow px-3 py-2 bg-slate-950 text-slate-100 border border-slate-700 rounded-lg text-xs outline-none focus:border-emerald-500 transition font-mono">
+                <button onclick="saveSellerNumber()" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-extrabold px-4 py-2 rounded-lg text-xs transition">
+                    Save Number
+                </button>
+            </div>
+            <p class="text-[10px] text-slate-400">Make sure to include the country code (e.g., **88** for Bangladesh, like `88017XXXXXXXX`).</p>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Chini Bazar. All rights reserved.</p>
+    <footer class="bg-slate-950 text-slate-500 text-center py-8 text-xs border-t border-slate-900 mt-auto">
+        <p>&copy; 2026 chini bazar. All rights reserved.</p>
     </footer>
 
+    <script>
+        // Real-world dummy Chinese imports/variety products catalog
+        const products = [
+            {
+                id: 1,
+                name: "Ultralight Smart Watch Pro",
+                category: "tech",
+                price: "৳ 2,450",
+                rawPrice: 2450,
+                rating: 4.8,
+                reviews: 42,
+                tag: "Bestseller",
+                image: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600&auto=format&fit=crop&q=60"
+            },
+            {
+                id: 2,
+                name: "ANC HiFi Wireless Earbuds",
+                category: "tech",
+                price: "৳ 1,890",
+                rawPrice: 1890,
+                rating: 4.7,
+                reviews: 29,
+                tag: "Hot Deal",
+                image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&auto=format&fit=crop&q=60"
+            },
+            {
+                id: 3,
+                name: "Portable LED Humidifier & Diffuser",
+                category: "lifestyle",
+                price: "৳ 850",
+                rawPrice: 850,
+                rating: 4.9,
+                reviews: 51,
+                tag: "New",
+                image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&auto=format&fit=crop&q=60"
+            },
+            {
+                id: 4,
+                name: "Dual-Speed USB Personal Blender",
+                category: "lifestyle",
+                price: "৳ 1,490",
+                rawPrice: 1490,
+                rating: 4.5,
+                reviews: 18,
+                tag: "Utility",
+                image: "https://images.unsplash.com/photo-1578643463396-0997cb5328c1?w=600&auto=format&fit=crop&q=60"
+            },
+            {
+                id: 5,
+                name: "Smart RGB Ambient Desk Tube",
+                category: "tech",
+                price: "৳ 1,200",
+                rawPrice: 1200,
+                rating: 4.6,
+                reviews: 35,
+                tag: "Trending",
+                image: "https://images.unsplash.com/photo-1565814636199-ae8133055c1c?w=600&auto=format&fit=crop&q=60"
+            },
+            {
+                id: 6,
+                name: "Waterproof Casual Utility Backpack",
+                category: "fashion",
+                price: "৳ 2,150",
+                rawPrice: 2150,
+                rating: 4.9,
+                reviews: 64,
+                tag: "Premium",
+                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&auto=format&fit=crop&q=60"
+            }
+        ];
+
+        // Store Seller Configuration State
+        let sellerNumber = localStorage.getItem("seller_wa_number") || "8801700000000";
+        let activeProduct = null;
+
+        // Initialize App & Load Products
+        window.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("seller-number").value = sellerNumber;
+            updateHeaderSupportBtn();
+            renderProducts("all");
+        });
+
+        function updateHeaderSupportBtn() {
+            const supportBtn = document.getElementById("header-support-btn");
+            supportBtn.href = `https://wa.me/${sellerNumber}?text=Hello!%20I%20have%20some%20questions%20about%20chini%20bazar%20products.`;
+        }
+
+        function saveSellerNumber() {
+            const numField = document.getElementById("seller-number").value.trim().replace(/\+/g, "");
+            if (!numField) return;
+            sellerNumber = numField;
+            localStorage.setItem("seller_wa_number", sellerNumber);
+            updateHeaderSupportBtn();
+            showCustomToast("WhatsApp Number saved successfully! Try placing an order now.");
+        }
+
+        // Render Cards dynamically based on active filter
+        function renderProducts(category) {
+            const grid = document.getElementById("product-grid");
+            grid.innerHTML = "";
+
+            const filtered = category === "all" ? products : products.filter(p => p.category === category);
+
+            filtered.forEach(p => {
+                const card = document.createElement("div");
+                card.className = "product-card bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-md transition duration-300 flex flex-col";
+                card.innerHTML = `
+                    <div class="relative overflow-hidden aspect-video bg-slate-100">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover transition duration-500 ease-out" onerror="this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Product+Image'">
+                        <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-[10px] font-bold tracking-wide uppercase">
+                            ${p.tag}
+                        </span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="flex items-center gap-1.5 text-xs text-amber-500 mb-1">
+                                <i class="fa-solid fa-star"></i>
+                                <span class="font-bold">${p.rating}</span>
+                                <span class="text-slate-400">(${p.reviews} reviews)</span>
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-sm leading-tight hover:text-emerald-500 transition">${p.name}</h3>
+                        </div>
+                        <div class="flex items-center justify-between pt-2 border-t border-slate-50">
+                            <span class="text-emerald-500 font-black text-lg">${p.price}</span>
+                            <button onclick="openOrderModal(${p.id})" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 active:scale-95 shadow-sm shadow-emerald-500/10">
+                                <i class="fa-brands fa-whatsapp text-sm"></i> Order Now
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Handle Active filter state styles
+        function filterCategory(category) {
+            const buttons = document.querySelectorAll(".category-btn");
+            buttons.forEach(btn => {
+                btn.classList.remove("bg-emerald-500", "text-white");
+                btn.classList.add("bg-white", "text-slate-600", "hover:bg-slate-100");
+            });
+
+            const activeBtn = document.getElementById(`btn-${category}`);
+            if (activeBtn) {
+                activeBtn.classList.remove("bg-white", "text-slate-600", "hover:bg-slate-100");
+                activeBtn.classList.add("bg-emerald-500", "text-white");
+            }
+
+            renderProducts(category);
+        }
+
+        // Modal triggers
+        function openOrderModal(productId) {
+            const p = products.find(prod => prod.id === productId);
+            if (!p) return;
+            activeProduct = p;
+
+            document.getElementById("modal-product-img").src = p.image;
+            document.getElementById("modal-product-name").innerText = p.name;
+            document.getElementById("modal-product-price").innerText = p.price;
+
+            document.getElementById("checkout-modal").classList.remove("hidden");
+        }
+
+        function closeModal() {
+            document.getElementById("checkout-modal").classList.add("hidden");
+        }
+
+        // Build WA Link & Submit
+        function submitOrder(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("cust-name").value.trim();
+            const phone = document.getElementById("cust-phone").value.trim();
+            const address = document.getElementById("cust-address").value.trim();
+
+            if (!activeProduct) return;
+
+            // Generate customized, beautifully formatted WhatsApp text message
+            const rawMessage = `*NEW ORDER - CHINI BAZAR*\n` +
+                               `-----------------------------\n` +
+                               `*Product:* ${activeProduct.name}\n` +
+                               `*Price:* ${activeProduct.price}\n\n` +
+                               `*Customer Details:*\n` +
+                               `*Name:* ${name}\n` +
+                               `*Phone:* ${phone}\n` +
+                               `*Address:* ${address}\n` +
+                               `-----------------------------\n` +
+                               `Thank you for shopping! Please confirm delivery.`;
+
+            const encodedMessage = encodeURIComponent(rawMessage);
+            const whatsappUrl = `https://wa.me/${sellerNumber}?text=${encodedMessage}`;
+
+            // Open in WhatsApp
+            window.open(whatsappUrl, '_blank');
+            closeModal();
+            document.getElementById("order-form").reset();
+        }
+
+        // Non-disruptive Toast Alerts (replaces alert() per system rules)
+        function showCustomToast(message) {
+            const toast = document.createElement("div");
+            toast.className = "fixed bottom-5 right-5 bg-slate-900 border border-slate-800 text-white font-semibold text-xs px-4 py-3 rounded-xl shadow-2xl z-50 transition transform translate-y-10 opacity-0 animate-bounce duration-300 flex items-center gap-2";
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i> <span>${message}</span>`;
+            document.body.appendChild(toast);
+
+            // Animate in
+            setTimeout(() => {
+                toast.classList.remove("translate-y-10", "opacity-0");
+            }, 100);
+
+            // Remove after a delay
+            setTimeout(() => {
+                toast.classList.add("translate-y-10", "opacity-0");
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
